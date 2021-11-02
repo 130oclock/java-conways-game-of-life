@@ -29,6 +29,7 @@ public class Drawing extends JPanel {
 		currentState = new int[screenLength];
 		previousState = new int[screenLength];
 		
+		// Use scanner to ask for next update
 		updateNext();
 	}
 	
