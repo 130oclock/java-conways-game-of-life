@@ -28,6 +28,8 @@ public class Drawing extends JPanel {
 		
 		currentState = new int[screenLength];
 		previousState = new int[screenLength];
+		
+		updateNext();
 	}
 	
 	public static void updateNext() {
@@ -39,6 +41,36 @@ public class Drawing extends JPanel {
 				int cIndex = (j * screenWidth) + i;
 				int cell = previousState[cIndex];
 				
+				int startx = i - 1, starty = j - 1;
+				int cellsAround = 0;
+				
+				for (int y = starty; y < starty + 3; y++) {
+					for (int x = startx; x < startx + 3; x++) {
+						int index = (y * screenWidth) + x;
+						if (previousState[index] == 1) cellsAround++;
+					}
+				}
+				
+				switch(cellsAround) {
+					case 0:
+					case 1:
+						// kill
+						currentState[cIndex] = 0;
+						break;
+					case 2:
+					case 3:
+						// birth/live
+						currentState[cIndex] = 1;
+						break;
+					case 4:
+					case 5:
+					case 6:
+					case 7:
+					case 8:
+						// kill
+						currentState[cIndex] = 0;
+						break;
+				}
 			}
 		}
 	}
