@@ -42,7 +42,7 @@ public class Drawing extends JPanel {
 				int cell = previousState[cIndex];
 				
 				int startx = i - 1, starty = j - 1;
-				int cellsAround = 0;
+				int cellsAround = 0 - cell;
 				
 				for (int y = starty; y < starty + 3; y++) {
 					for (int x = startx; x < startx + 3; x++) {
